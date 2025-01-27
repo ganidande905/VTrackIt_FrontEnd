@@ -1,4 +1,4 @@
-# V-Track-it Front-End 
+# V-Track-it
 
 ## Introduction
 
