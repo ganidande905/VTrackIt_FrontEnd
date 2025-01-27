@@ -27,12 +27,9 @@ Ensure you have the following installed:
 
 ### Steps to Install
 
-1. Clone the repository:
+1. Clone the repository
 
-2. Navigate to the project directory:
-   ```bash
-   cd v_track_it_frontend
-   ```
+2. Navigate to the project directory
 
 3. Install the required dependencies:
    ```bash
