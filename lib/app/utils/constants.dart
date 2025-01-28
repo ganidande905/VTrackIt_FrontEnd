@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 // Light Theme Color Palette
 const Color kPrimaryBackgroundColor = Color(0xffFFFFFF); // Background: White
-const Color kSecondaryBackgroundColor = Color(0xffF9F9F9); // Secondary Background
-const Color kPrimaryTextColor = Color(0xff000000); // Text: Black
-const Color kSecondaryTextColor = Color(0xff6D6D6D); // Secondary Text: Grey
+const Color kSecondaryBackgroundColor = Color.fromARGB(255, 0, 0, 0); // Secondary Background
+const Color kPrimaryTextColor = Color.fromARGB(255, 255, 254, 254); // Text: white
+const Color kSecondaryTextColor = Color.fromARGB(255, 0, 0, 0); // Secondary Text: black
 const Color kButtonColor = Color(0xff000000); // Buttons: Black
 const Color kButtonTextColor = Color(0xffFFFFFF); // Button Text: White
 const Color kNavbarColor = Color(0xffFFFFFF); // Navbar Background: White
