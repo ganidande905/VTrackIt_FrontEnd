@@ -27,3 +27,14 @@ doc/api/
 .flutter-plugins-dependencies
 
 custom_lint.log
+.idea/compiler.xml
+.idea/migrations.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/.name
+custom_lint.log
+.idea/other.xml
+.gitignore
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/workspace.xml
