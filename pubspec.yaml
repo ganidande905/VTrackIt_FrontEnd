@@ -37,6 +37,7 @@ dependencies:
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   fluentui_system_icons: ^1.1.271
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:

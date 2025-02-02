@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:v_track_it_frontend/app/utils/constants.dart';
-
+import '../controller/login_controller.dart';
 class Loginpage extends StatelessWidget {
   const Loginpage({super.key});
   
@@ -70,7 +70,7 @@ class Loginpage extends StatelessWidget {
 
                     // Microsoft Login Button
                     ElevatedButton(
-                      onPressed: () async{},
+          onPressed: () => AuthController.redirectToMicrosoftLogin(),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: kPrimaryBackgroundColor, 
                         shape: RoundedRectangleBorder(
