@@ -9,7 +9,7 @@ The system includes features such as applying for duty leave and staybacks, mana
 ## Technologies Used
 
 - **Flutter**: Front-End
-- **Django**: (Back-End)[https://www.github.com/ganidande905/VTrackIt_BackEnd]
+- **Django**: [Back-End](https://www.github.com/ganidande905/VTrackIt_BackEnd)
 - **Postgres**: Database
 
 ## Installation
