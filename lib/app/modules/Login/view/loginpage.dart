@@ -1,105 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:v_track_it_frontend/app/utils/constants.dart';
+import 'api_service.dart';
+import '../dashboard/dashboard.dart';
 
-class Loginpage extends StatelessWidget {
-  const Loginpage({super.key});
-  
-@override
-  Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: kSecondaryBackgroundColor, 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Header Section with Logo and App Name
-            Container(
-              width: double.infinity,
-              height: screenHeight* 0.45,
-              color: kPrimaryBackgroundColor, 
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      'lib/app/utils/icons/Vidyut_Logo.png', 
-                      height: screenHeight*0.2,
-                      width: screenWidth*0.4,
-                      fit: BoxFit.cover,
-                    ),
-                     SizedBox(height: screenHeight*0.04),
-                    const Text(
-                      "V-track-it",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: kSecondaryTextColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
 
-            // Main Login Section
-            Container(
-              transform: Matrix4.translationValues(0, -20, 0), // Overlap effect
-              height: screenHeight * 0.5,
-              decoration: const BoxDecoration(
-                color: kSecondaryBackgroundColor,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Title
-                    const Text(
-                      "LogIn",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryTextColor,
-                      ),
-                    ),
-                     SizedBox(height: screenHeight*0.20),
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
-                    // Microsoft Login Button
-                    ElevatedButton(
-                      onPressed: () async{},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: kPrimaryBackgroundColor, 
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 15,
-                          horizontal: 80,
-                        ),
-                      ),
-                      child: const Text(
-                        "LOGIN WITH MICROSOFT",
-                        style: TextStyle(
-                          color: kSecondaryTextColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                     SizedBox(height: screenHeight*0.01),
-                  ],
-                ),
-              ),
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final ApiService apiService = ApiService();
+
+  void registerUser() async {
+    String email = emailController.text.trim();
+    String username = usernameController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email.isEmpty || username.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("All fields are required")),
+      );
+      return;
+    }
+
+    bool success = await apiService.registerUser(username, email, password);
+    if (success) {
+      _showOtpDialog(email);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Registration failed")),
+      );
+    }
+  }
+
+  void _showOtpDialog(String email) {
+    TextEditingController otpController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Enter OTP"),
+          content: TextField(
+            controller: otpController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: "OTP"),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                bool verified = await apiService.verifyOtp(email, otpController.text);
+                if (verified) {
+                  Navigator.of(context).pop(); // Close dialog
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Invalid OTP")),
+                  );
+                }
+              },
+              child: Text("Verify"),
             ),
           ],
-        ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Login with OTP")),
+      body: Column(
+        children: [
+          TextField(controller: usernameController, decoration: InputDecoration(labelText: "Username")),
+          TextField(controller: emailController, decoration: InputDecoration(labelText: "Email")),
+          TextField(controller: passwordController, obscureText: true, decoration: InputDecoration(labelText: "Password")),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: registerUser,
+            child: Text("Register"),
+          ),
+        ],
       ),
     );
   }
 }
- 
-
