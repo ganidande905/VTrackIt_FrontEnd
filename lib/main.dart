@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:v_track_it_frontend/app/modules/Login/view/loginpage.dart';
-import 'package:v_track_it_frontend/app/utils/constants.dart';
+import 'package:v_track_it/app/modules/Login/view/loginpage.dart';
+import 'package:v_track_it/app/utils/constants.dart';
+
 
 void main() {
   runApp(const MyApp());
