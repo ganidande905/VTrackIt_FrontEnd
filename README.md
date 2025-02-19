@@ -8,11 +8,9 @@ The system includes features such as applying for duty leave and staybacks, mana
 
 ## Technologies Used
 
-- **Flutter**: For building the cross-platform mobile app (iOS & Android).
-- **Dart**: The programming language used for Flutter development.
-- **RiverPod**: For state management across the app.
-- **http**: For making API requests.
-- **Firebase**: For authentication and notifications.
+- **Flutter**: Front-End
+- **Django**: (Back-End)[https://www.github.com/ganidande905/VTrackIt_BackEnd]
+- **Postgres**: Database
 
 ## Installation
 
@@ -24,21 +22,3 @@ Ensure you have the following installed:
 - Dart SDK (bundled with Flutter)
 - Android Studio / Visual Studio Code (IDE for development)
 
-
-### Steps to Install
-
-1. Clone the repository
-
-2. Navigate to the project directory
-
-3. Install the required dependencies:
-   ```bash
-   flutter pub get
-   ```
-
-4. Run the app in the emulator or connected device:
-   ```bash
-   flutter run
-   ```
-
-The app will be available on your connected device or simulator/emulator.
