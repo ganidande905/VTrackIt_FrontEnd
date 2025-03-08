@@ -14,7 +14,7 @@ The system includes features such as applying for duty leave and staybacks, mana
 
 ## Installation
 
-### Prerequisites
+## Prerequisites
 
 Ensure you have the following installed:
 
