@@ -22,3 +22,5 @@ Ensure you have the following installed:
 - Dart SDK (bundled with Flutter)
 - Android Studio / Visual Studio Code (IDE for development)
 
+Making this repository private
+
